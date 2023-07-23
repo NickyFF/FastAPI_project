@@ -70,7 +70,6 @@ def create_dish(db: Session, dish: DishCreate, submenu_id: uuid.UUID):
     try:
         if db.query(Dish).filter(Dish.submenu_id == submenu_id, Dish.title == dish.title).first():
             return None
-
         db_dish = Dish(title=dish.title, description=dish.description, price=dish.price, submenu_id=submenu_id, id=uuid.uuid4().hex)
         db.add(db_dish)
         db.commit()
